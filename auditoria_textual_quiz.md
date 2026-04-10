@@ -10,6 +10,14 @@
 
 ---
 
+---
+
+### 🏛️ CABECERA (Branding Oficial)
+*   **Logo:** `logo_nerviozen.png` (Altura: 85px) ✅
+*   **Barra de Progresso:** Texto "Evaluación en curso" centralizado. ✅
+
+---
+
 ### PASO 1: Fricción Cero (Micro-compromiso)
 
 **Pregunta:** Cuando sientes **hormigueo** o dolor, ¿tu primer instinto es **frotarte con alguna crema o pomada**?
@@ -143,7 +151,7 @@ Procesando datos del paciente... · Escaneando marcadores neurológicos... · Fi
 
 ### PERFIL DE DATOS CLÍNICOS (Estilo Reporte de Laboratorio)
 
-**Encabezado:** 📋 **Tu Perfil Neuropático**
+**Encabezado:** 📋 **Tu Perfil Neuropático** (Sin íconos de hospital 🏥 - Limpio) ✅
 
 | # | Indicador | Resultado |
 |---|-----------|-----------|
@@ -177,6 +185,30 @@ Procesando datos del paciente... · Escaneando marcadores neurológicos... · Fi
 
 **Prueba Social (Pie de página):**
 > ✅ Más de 87,000 personas ya recuperaron su calidad de vida con este método 100% natural.
+
+---
+
+## ── ESTRUCTURA DE LA VSL (VIDEO SALES PAGE) ──
+
+### 🎯 BLOQUE DE CONFIANZA Y CIERRE (Debajo del Botão de Compra)
+**Objetivo:** Eliminar la fricción de pago internacional y moneda extranjera.
+
+> **✨ ¡ACCESO VITALICIO POR PAGO ÚNICO!**
+> 
+> ✅ **Sin suscripciones ni cargos mensuales.**
+> 
+> 🌎 **CONVERSIÓN AUTOMÁTICA:** No te preocupes por el cambio. Nuestro sistema detecta tu país y convertirá el valor automáticamente a tu moneda local en el siguiente paso.
+> 
+> 💳 **MÉTODOS LOCALES:** Podrás pagar con tarjeta de crédito, débito y los métodos locales de tu país.
+> 
+> 🔒 **Pago 100% seguro y encriptado.**
+
+### 🛠️ ESPECIFICACIONES TÉCNICAS (BACKEND)
+*   **Tracking:** Microsoft Clarity + Meta Pixel (Inyección en `<head>`). ✅
+*   **UTMs:** Script dinâmico embutindo parâmetros utm diretamente no checkout Hotmart via `&sck=...`. ✅
+*   **Favicon:** Logo oficial ativado. ✅
+*   **SEO:** Títulos e Meta Descriptions únicos por página. ✅
+*   **Checkout:** Link real configurado (`...K105321888M...`). ✅
 
 ---
 
