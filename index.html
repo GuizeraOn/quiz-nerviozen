@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Protocolo NervioZen - Evaluación Clínica Personalizada</title>
+<meta name="description" content="Descubre el verdadero origen de tu dolor nervioso. Completa nuestra evaluación y descubre un protocolo natural y comprobado.">
+<link rel="icon" type="image/png" href="logo_nerviozen.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F8FAFC;
+    --card: #FFFFFF;
+    --border: #E2E8F0;
+    --text: #0F172A; /* Slate 900 */
+    --text-muted: #64748B; /* Slate 500 */
+    --accent: #3B82F6; /* Adjusted to Brand Blue per 5.3 */
+    --success: #10B981; /* Brand Green per 5.3 */
+    --danger: #DC2626; /* Red 600 per 5.4 */
+    --danger-bg: #FEF2F2;
+    --danger-border: #FCA3A3;
+    --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+    --radius: 12px;
+    --font: 'DM Sans', sans-serif;
+    --font-display: 'DM Serif Display', serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    min-height: 100%;
+    background: var(--bg);
+    font-family: var(--font);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 12px 16px 40px; /* Reduced top padding */
+    background: var(--bg);
+    background-image:
+      radial-gradient(ellipse at 20% 0%, rgba(59,130,246,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 100%, rgba(16,185,129,0.05) 0%, transparent 60%);
+  }
+
+  /* ── Header ── */
+  .site-header {
+    width: 100%;
+    max-width: 520px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    margin-bottom: 12px; /* Reduced space */
+  }
+  .site-header .logo {
+    font-size: 0.65rem; /* Slightly smaller logo */
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+  .site-header .subtitle {
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    letter-spacing: 0.02em;
+  }
+
+  /* ── Progress bar ── */
+  .progress-wrap {
+    width: 100%;
+    max-width: 520px;
+    margin-bottom: 16px; /* Reduced space */
+  }
+  .progress-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    text-align: center;
+  }
+  .progress-track {
+    width: 100%;
+    height: 6px;
+    background: #E2E8F0;
+    border-radius: 99px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #059669, #34D399);
+    border-radius: 99px;
+    transition: width 0.5s cubic-bezier(.4,0,.2,1);
+  }
+
+  /* ── Card ── */
+  .card {
+    width: 100%;
+    max-width: 520px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 22px 18px; /* Compact padding for mobile-first fold */
+  }
+
+  /* ── Step screens ── */
+  .screen { display: none; }
+  .screen.active { display: block; animation: fadeUp 0.35s ease; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── Step counter (5.2: subtle, low-contrast, non-distracting) ── */
+  .step-counter {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #94A3B8; /* Slate 400 */
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-align: center;
+    margin-bottom: 8px; /* Reduced margin */
+  }
+
+  /* ── Question (5.2: 1.25rem, 1.4 lh, Slate 900 max contrast) ── */
+  .question {
+    font-family: var(--font); /* Using DM Sans for better readability on mobile */
+    font-size: 1.25rem;
+    line-height: 1.35; /* Slightly tighter */
+    text-align: center;
+    color: #0F172A; /* Slate 900 */
+    margin-bottom: 18px; /* Reduced space before buttons */
+    font-weight: 500; /* Base weight 500 */
+  }
+  /* 5.1: Eye-Path Bolding Strategy */
+  .question strong { 
+    font-weight: 800; 
+    color: #0F172A;
+  }
+  .question em     { font-style: italic; color: #475569; font-weight: 400; }
+
+  /* ── Option buttons (5.3) ── */
+  .options { display: flex; flex-direction: column; gap: 12px; }
+
+  .opt-btn {
+    min-height: 64px;
+    padding: 16px 20px;           /* 5.3 generous padding */
+    background: #FFFFFF;
+    border: 1px solid #E2E8F0;    /* 5.3 subtle default */
+    border-radius: 12px;
+    font-family: var(--font);
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text);
+    cursor: pointer;
+    text-align: left;             /* 5.3 always left-align */
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    line-height: 1.4;
+    display: flex;
+    align-items: center;
+    -webkit-tap-highlight-color: transparent;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .opt-btn:hover { 
+    border-color: var(--accent); /* Brand color on hover */
+    background: #F8FAFC;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.08);
+  }
+
+  .opt-btn:active { 
+    transform: scale(0.98); 
+    background: #EFF6FF; 
+    border-color: var(--accent); 
+  }
+
+  /* 5.3 emoji anchor: margin-right separates from text */
+  .opt-btn .icon { 
+    font-size: 1.25rem; 
+    flex-shrink: 0; 
+    margin-right: 8px; /* Strict visual anchor margin */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* ── Step 2: spinner & correction ── */
+  .spinner-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    padding: 24px 0;
+    text-align: center;
+  }
+  .spinner {
+    width: 42px; height: 42px;
+    border: 3px solid #E2E8F0;
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .spinner-text { font-size: 0.95rem; color: var(--text-muted); font-weight: 500; }
+
+  .correction-box {
+    background: var(--danger-bg);
+    border-left: 4px solid var(--danger);
+    border-radius: 8px;
+    padding: 20px;
+    font-size: 0.93rem;
+    line-height: 1.6; /* 5.4 specific line-height */
+    color: #7F1D1D;
+    display: none;
+    margin-top: 16px;
+  }
+  /* 5.4: INCORRECTO keyword loud */
+  .correction-box .label {
+    font-weight: 900; /* 5.4 loud weight */
+    color: #DC2626;   /* Red 600 */
+    font-size: 1rem;
+    margin-bottom: 10px;
+    display: block;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  /* 5.4: mechanism (Células de Schwann) bolded inside paragraph */
+  .correction-box strong { font-weight: 800; color: #7F1D1D; }
+
+  /* 5.5: clinical report key:value formatting */
+  .data-field {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #F1F5F9;
+  }
+  .data-field .df-label {
+    color: #64748B; /* Slate 500 */
+    font-size: 0.875rem;
+    font-weight: 400;
+  }
+  .data-field .df-value {
+    color: #0F172A; /* Slate 900 */
+    font-weight: 600;
+    font-size: 1rem;
+    text-align: right;
+  }
+
+  /* 5.5: Yellow highlighter effect */
+  .hl {
+    background-color: #FEF08A;
+    padding: 2px 4px;
+    border-radius: 2px;
+    color: #1F2937;
+    font-weight: 700;
+  }
+
+  /* Auto-advance bar */
+  .auto-bar-wrap {
+    margin-top: 14px;
+    display: none;
+  }
+  .auto-bar-track {
+    width: 100%;
+    height: 4px;
+    background: #FCA5A5;
+    border-radius: 99px;
+    overflow: hidden;
+  }
+  .auto-bar-fill {
+    height: 100%;
+    background: var(--danger);
+    width: 100%;
+    border-radius: 99px;
+    animation: drain 5s linear forwards;
+  }
+  @keyframes drain { from { width: 100%; } to { width: 0%; } }
+  .auto-bar-label {
+    font-size: 0.7rem;
+    color: #EF4444;
+    margin-top: 5px;
+    text-align: right;
+    font-weight: 500;
+  }
+
+  /* ── Fake loader (Enhanced for realism) ── */
+  #fakeLoader { display: none; }
+  #fakeLoader.active { display: flex; flex-direction: column; align-items: center; gap: 24px; padding: 30px 0; }
+
+  .loader-status-icon {
+    font-size: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80px;
+    width: 80px;
+    background: #F0FDF4;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    animation: pulse-soft 2s infinite;
+  }
+  @keyframes pulse-soft {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.2); }
+    70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(16, 185, 129, 0); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+  }
+
+  .loader-step-text {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text);
+    text-align: center;
+    min-height: 1.5em;
+    letter-spacing: -0.01em;
+  }
+  .loader-sub-text {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-align: center;
+    margin-top: -16px;
+    font-weight: 500;
+  }
+
+  .loader-track {
+    width: 100%;
+    height: 12px;
+    background: #E2E8F0;
+    border-radius: 99px;
+    overflow: hidden;
+    position: relative;
+  }
+  .loader-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #10B981, #34D399, #10B981);
+    background-size: 200% 100%;
+    border-radius: 99px;
+    width: 0%;
+    transition: width 0.4s cubic-bezier(.17,.67,.83,.67);
+    animation: shimmer 1.5s linear infinite;
+  }
+  @keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+  .loader-pct {
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: #10B981;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── Bridge / Clinical Report ── */
+  #bridgePage { display: none; }
+  #bridgePage.active { display: block; animation: fadeUp 0.4s ease; }
+
+  .report-header {
+    text-align: center;
+    margin-bottom: 18px;
+  }
+  .report-header .hosp-icon { font-size: 1.5rem; }
+  .report-header h1 {
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    color: #334155;
+    text-transform: uppercase;
+    margin: 6px 0 2px;
+  }
+  .report-header .report-id {
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+  }
+
+  .report-divider {
+    border: none;
+    border-top: 1px dashed #CBD5E1;
+    margin: 16px 0;
+  }
+
+  .risk-box {
+    background: var(--danger-bg);
+    color: #991B1B;
+    border: 1px solid var(--danger-border);
+    border-radius: 6px;
+    padding: 12px 14px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .risk-box .risk-label { flex: 1; }
+  .risk-badge {
+    background: var(--danger);
+    color: #fff;
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    padding: 3px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .alert-box {
+    border-radius: 8px;
+    padding: 16px; /* Increased internal padding per 3.3 */
+    font-size: 0.88rem;
+    line-height: 1.6;
+    margin-bottom: 14px;
+  }
+  /* 1.1: Hierarchy of colors */
+  .alert-box.info {
+    background: #F8FAFC;
+    border: 1px solid #E2E8F0;
+    color: #334155;
+  }
+  .alert-box.danger {
+    background: #FEF2F2;
+    border: 1px solid #F87171;
+    color: #991B1B;
+  }
+  .alert-box.danger strong { color: #DC2626; }
+
+  .solution-box {
+    border-radius: 8px;
+    padding: 20px;
+    font-size: 0.9rem;
+    line-height: 1.65;
+    margin-bottom: 18px;
+    background: #F0FDF4; /* Psychological relief green per 1.1 */
+    border: 1px solid #4ADE80;
+    color: #166534;
+  }
+  .solution-box .sol-title {
+    font-weight: 800;
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+    display: block;
+    color: #15803D;
+  }
+
+  .urgency-note {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-style: italic;
+    text-align: center;
+    margin-top: 14px;
+    line-height: 1.5;
+  }
+
+  /* ── CTA Button (2.1: Medical Green Solution) ── */
+  .cta-btn {
+    display: block;
+    width: 100%;
+    padding: 20px 12px;
+    background: #10B981; /* High-conversion medical green per 2.1 */
+    color: #FFFFFF;
+    font-family: var(--font);
+    font-size: 1.05rem;
+    font-weight: 900;
+    text-align: center;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    line-height: 1.35;
+    animation: pulse-success 2s infinite; /* Success pulse */
+    -webkit-tap-highlight-color: transparent;
+    transition: all 0.2s;
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+  }
+  .cta-btn:hover { background: #059669; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4); }
+  .cta-btn:active { transform: scale(0.98); }
+
+  @keyframes pulse-success {
+    0%   { box-shadow: 0 0 0 0 rgba(16,185,129,0.7); }
+    70%  { box-shadow: 0 0 0 10px rgba(16,185,129,0); }
+    100% { box-shadow: 0 0 0 0 rgba(16,185,129,0); }
+  }
+
+  .cta-subtext {
+    font-size: 0.7rem;
+    text-align: center;
+    color: var(--text-muted);
+    margin-top: 10px;
+  }
+
+  /* ── Secure footer strip ── */
+  .secure-strip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+  .secure-strip span {
+    font-size: 0.67rem;
+    color: #94A3B8;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  /* Demographics Grid */
+  .grid-2x2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .grid-2x2 .opt-btn { flex-direction: column; padding: 12px; font-size: 0.9rem; text-align: center; justify-content: flex-start; }
+  .demo-photo-img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 8px; margin-bottom: 8px; border: 1px solid #E2E8F0; }
+  
+  /* Gender Icons CSS */
+  .gender-img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; margin-right: 12px; border: 2px solid #E2E8F0; }
+  .gender-btn { justify-content: flex-start; padding: 12px 16px; font-weight: 600; font-size: 1.05rem; }
+  
+  /* Checkboxes */
+  .check-opt { text-align: left; padding: 16px 14px; justify-content: flex-start; }
+  .check-opt input { margin-right: 12px; width: 18px; height: 18px; accent-color: var(--accent); }
+
+  /* Doctor Audio Block */
+  .audio-alert { background: #FEF2F2; border: 1px dashed #F87171; border-radius: 12px; padding: 16px; margin-top: 24px; text-align: center; }
+  .dr-profile { display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 12px; text-align: left; background: #FFF; padding: 12px; border-radius: 8px; border: 1px solid #FECACA; }
+  .dr-profile img { width: 55px; height: 55px; border-radius: 50%; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+  .dr-quote { font-style: italic; color: #475569; font-size: 0.9rem; margin-bottom: 16px; }
+
+  /* ESTILOS DO FAKE WHATSAPP PLAYER */
+  .fake-wp-audio {
+    display: flex;
+    align-items: center;
+    background-color: #F2F2F2; /* Cor padrão do balão do WhatsApp */
+    border-radius: 30px;
+    padding: 8px 16px 8px 8px;
+    text-decoration: none;
+    width: 100%;
+    max-width: 320px;
+    margin: 20px auto;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    transition: transform 0.1s ease;
+    cursor: pointer;
+  }
+  .fake-wp-audio:active {
+    transform: scale(0.96);
+  }
+  .wp-avatar-wrapper {
+    position: relative;
+    margin-right: 12px;
+  }
+  .wp-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  .wp-mic-badge {
+    position: absolute;
+    bottom: 0;
+    right: -4px;
+    background-color: #34B7F1; /* Azul WhatsApp */
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #F2F2F2;
+  }
+  .wp-player-body {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    gap: 12px;
+    min-width: 0; /* Impede a flexbox de vazar os limites */
+  }
+  .wp-play-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0; /* Garante que o play nao amasse */
+  }
+  /* Magia das Ondinhas em CSS */
+  .wp-waveform {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    height: 24px;
+    position: relative;
+    flex-grow: 1;
+    overflow: hidden; /* Isso esconde as barras extras e mata o espaço em branco */
+    min-width: 0; /* Permite o corte perfeito do overflow sem vazar do balao */
+  }
+  .wave-dot {
+    width: 12px;
+    height: 12px;
+    background-color: #25D366; /* Verde WhatsApp do progresso */
+    border-radius: 50%;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%); /* Centraliza perfeitamente no meio das ondas */
+    z-index: 2;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2); /* Sombra para dar realismo 3D */
+  }
+  .wave {
+    width: 3px;
+    background-color: #8696A0; /* Cor da ondinha não ouvida */
+    border-radius: 2px;
+    opacity: 0.6;
+  }
+  /* Alturas variadas para simular a voz */
+  .w-1 { height: 6px; }
+  .w-2 { height: 10px; }
+  .w-3 { height: 14px; }
+  .w-4 { height: 18px; }
+  .w-5 { height: 22px; }
+  .wp-meta {
+    margin-left: 12px;
+  }
+  .wp-time {
+    font-size: 12px;
+    color: #8696A0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+
+  @keyframes pulse-aggressive {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+    70% { transform: scale(1.03); box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+  }
+  .pulse-aggressive {
+    animation: pulse-aggressive 1.2s infinite !important;
+  }
+</style>
+
+<!-- Microsoft Clarity Code -->
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "w9mq28o0u6");
+</script>
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1285627397095470');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1285627397095470&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+</head>
+<body>
+
+<!-- Header -->
+<header class="site-header">
+  <img src="logo_nerviozen.png" alt="NervioZen" style="height: 85px; width: auto; object-fit: contain; margin-bottom: 8px;">
+</header>
+
+<!-- Progress -->
+<div class="progress-wrap" id="progressWrap">
+  <div class="progress-label">Evaluación en curso</div>
+  <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:10%"></div></div>
+</div>
+
+<!-- ════════════════════════════════════════ QUIZ CARD ═══════════════════════════════════════ -->
+<div class="card" id="quizCard">
+
+  <!-- ── STEP 1 (Fricción Cero) ── -->
+  <div class="screen active" id="step1">
+    <p class="question">Cuando sientes <strong>hormigueo</strong> o dolor, ¿tu primer instinto es <strong>frotarte con alguna crema o pomada</strong>?</p>
+    <div class="options">
+      <button class="opt-btn" onclick="goStep(2)"><span class="icon">✅</span> <span>Sí, lo hago casi siempre.</span></button>
+      <button class="opt-btn" onclick="goStep(2)"><span class="icon">❌</span> <span>No, rara vez lo hago.</span></button>
+    </div>
+  </div>
+
+  <!-- ── STEP 2 (Mapeo de Síntomas) ── -->
+  <div class="screen" id="step2">
+    <p class="question">¿Cómo describirías la molestia más difícil de soportar que sientes en tus manos o pies?</p>
+    <div class="options">
+      <button class="opt-btn" onclick="goStep(3)"><span class="icon">⚡</span> <span>Punzadas eléctricas que llegan de repente.</span></button>
+      <button class="opt-btn" onclick="goStep(3)"><span class="icon">🔥</span> <span>Un ardor constante, como si te quemaras por dentro.</span></button>
+      <button class="opt-btn" onclick="goStep(3)"><span class="icon">🧊</span> <span>Adormecimiento, frío y pérdida de sensibilidad.</span></button>
+      <button class="opt-btn" onclick="goStep(3)"><span class="icon">📌</span> <span>Sensación de caminar sobre agujas o vidrios rotos.</span></button>
+    </div>
+  </div>
+
+  <!-- ── STEP 3 (Duración) ── -->
+  <div class="screen" id="step3">
+    <p class="question">¿Hace cuánto tiempo empezó este sufrimiento en tus manos o pies?</p>
+    <div class="options">
+      <button class="opt-btn" onclick="goStep(4)"><span class="icon">⏱️</span> <span>Menos de 6 meses.</span></button>
+      <button class="opt-btn" onclick="goStep(4)"><span class="icon">⏳</span> <span>Entre 1 y 3 años.</span></button>
+      <button class="opt-btn" onclick="goStep(4)"><span class="icon">📅</span> <span>Entre 3 y 5 años.</span></button>
+      <button class="opt-btn" onclick="goStep(4)"><span class="icon">🕰️</span> <span>Más de 5 años (ya probé de todo).</span></button>
+    </div>
+  </div>
+
+  <!-- ── STEP 4 (La Trampa + Break Fusionado) ── -->
+  <div class="screen" id="step4">
+    <p class="question" id="step4Question">¿Cuál crees que es la verdadera razón por la que sientes ese dolor y ardor insoportables?</p>
+    <div class="options" id="step4Options">
+      <button class="opt-btn" onclick="step4Select()"><span class="icon">🩸</span> <span>Mala circulación sanguínea.</span></button>
+      <button class="opt-btn" onclick="step4Select()"><span class="icon">🍬</span> <span>Niveles altos de azúcar.</span></button>
+      <button class="opt-btn" onclick="step4Select()"><span class="icon">👴</span> <span>Desgaste natural por la edad.</span></button>
+      <button class="opt-btn" onclick="step4Select()"><span class="icon">🧬</span> <span>La destrucción de tus Células de Schwann.</span></button>
+    </div>
+    
+    <div class="spinner-wrap" id="step4Spinner" style="display:none;">
+      <div class="spinner"></div><div class="spinner-text">Analizando tu respuesta...</div>
+    </div>
+    <div class="correction-box" id="step4Correction" style="display:none; border-color: #F87171;">
+      <span class="label" style="background:#FEF2F2; color:#DC2626;">⚠️ INCORRECTO</span>
+      <p style="margin-bottom: 14px;">La industria médica te dirá que "aprendas a vivir con el dolor" o culpará a la mala circulación. Te recetarán pastillas que solo te dejan somnoliento.</p>
+      
+      <img src="schwann_cells.webp" style="width: 100%; border-radius: 8px; margin: 12px 0; border: 1px solid #E2E8F0;" alt="Daño Células de Schwann">
+
+      <p style="margin-bottom: 14px;">Pero la neurociencia moderna acaba de revelar la verdad: La verdadera raíz del dolor es la <strong>destrucción de tus Células de Schwann</strong> (el escudo protector de tus nervios). Sigamos...</p>
+      <button class="opt-btn" onclick="goStep(5)" style="margin-top: 20px; border-color: var(--accent); background: #F0FDF4; width: 100%; justify-content: center; font-weight: 800;">
+        <span>Calibrar mi diagnóstico ➔</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ── STEP 5 (Género - Micro-compromiso) ── -->
+  <div class="screen" id="step5">
+    <p class="question">Para personalizar tu protocolo: ¿Eres Hombre o Mujer?</p>
+    <div class="options">
+      <button class="opt-btn gender-btn" onclick="selectGender('m')">
+        <img src="gender_male.png" alt="Hombre" class="gender-img">
+        <span>Hombre</span>
+      </button>
+      <button class="opt-btn gender-btn" onclick="selectGender('f')">
+        <img src="gender_female.png" alt="Mujer" class="gender-img">
+        <span>Mujer</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ── STEP 6 (Demografía Visual) ── -->
+  <div class="screen" id="step6">
+    <p class="question">Para que nuestro sistema ajuste tu protocolo clínico, ¿en qué rango de edad estás?</p>
+    <div class="options grid-2x2">
+      <button class="opt-btn" onclick="goStep(7)">
+        <img src="age_m_40.png" class="demo-photo-img" id="img-age-40">
+        <span>40 a 49 años</span>
+      </button>
+      <button class="opt-btn" onclick="goStep(7)">
+        <img src="age_m_50.png" class="demo-photo-img" id="img-age-50">
+        <span>50 a 59 años</span>
+      </button>
+      <button class="opt-btn" onclick="goStep(7)">
+        <img src="age_m_60.png" class="demo-photo-img" id="img-age-60">
+        <span>60 a 69 años</span>
+      </button>
+      <button class="opt-btn" onclick="goStep(7)">
+        <img src="age_m_70.png" class="demo-photo-img" id="img-age-70">
+        <span>70 años o más</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ── STEP 7 (Impacto - Checkboxes) ── -->
+  <div class="screen" id="step7">
+    <p class="question">¿De qué forma este daño nervioso está afectando tu vida diaria? <em>(Selecciona todas las que apliquen)</em></p>
+    <div class="options">
+      <label class="opt-btn check-opt"><input type="checkbox"> <span>El dolor me despierta en la noche y no puedo descansar bien.</span></label>
+      <label class="opt-btn check-opt"><input type="checkbox"> <span>Me cuesta caminar, permanecer de pie o hacer cosas sencillas.</span></label>
+      <label class="opt-btn check-opt"><input type="checkbox"> <span>Me siento irritable, agotado o con angustia todo el tiempo.</span></label>
+      <label class="opt-btn check-opt"><input type="checkbox"> <span>Me aleja de mi familia y ya no puedo disfrutar momentos con mis seres queridos.</span></label>
+      
+      <button class="cta-btn" onclick="goStep(8)" style="margin-top:20px;">Confirmar síntomas ➔</button>
+    </div>
+  </div>
+
+  <!-- ── STEP 8 (BREAK INFORMATIVO 2) ── -->
+  <div class="screen" id="step8">
+    <div class="correction-box" style="display:block; border-color: #10B981; background: #FFF;">
+      <span class="label" style="background:#F0FDF4; color:#059669;">🧬 EL ENEMIGO INVISIBLE</span>
+      <p style="margin-bottom: 14px;">La razón por la que tus <strong>Células de Schwann</strong> están muriendo se encuentra en tu propio hogar.</p>
+      
+      <img src="toxic_nerve.png" style="width: 100%; border-radius: 8px; margin: 12px 0; border: 1px solid #E2E8F0;" alt="Daño por Neurotóxicos">
+
+      <p style="margin-bottom: 14px;">Hay neurotóxicos escondidos en jabones y alimentos que destruyen tus nervios como si fueran cables pelados siendo roídos por dentro. Por eso sientes ese ardor que no te da tregua.</p>
+      
+      <button class="opt-btn" onclick="startFakeLoader()" style="margin-top: 20px; border-color: var(--accent); background: #10B981; color: white; width: 100%; justify-content: center; font-weight: 800;">
+        <span style="color:white;">Ver mis resultados ➔</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ── FAKE LOADER ── -->
+  <div id="fakeLoader">
+    <div class="loader-status-icon" id="loaderIcon">⚙️</div>
+    <div class="loader-step-text" id="loaderText">Iniciando análisis...</div>
+    <div class="loader-sub-text" id="loaderSubText">Conectando a base de datos clínica...</div>
+    <div class="loader-track"><div class="loader-fill" id="loaderFill"></div></div>
+    <div class="loader-pct" id="loaderPct">0%</div>
+  </div>
+
+</div><!-- /card -->
+
+<!-- ════════════════════════════════════════ BRIDGE PAGE ═══════════════════════════════════════ -->
+<div class="card" id="bridgePage" style="display:none; margin-top: 0;">
+
+  <div class="report-header">
+    <h1>Reporte Clínico Confidencial</h1>
+  </div>
+
+  <hr class="report-divider">
+
+  <!-- 5.5: key:value data field formatting -->
+  <div style="margin-bottom:14px;">
+    <div class="data-field">
+      <span class="df-label">Paciente:</span>
+      <span class="df-value">Anónimo / Generado Online</span>
+    </div>
+    <div class="data-field">
+      <span class="df-label">Fecha:</span>
+      <span class="df-value" id="reportDate"></span>
+    </div>
+    <div class="data-field">
+      <span class="df-label">Clasificación:</span>
+      <span class="df-value">🔒 Confidencial</span>
+    </div>
+  </div>
+
+  <hr class="report-divider">
+
+  <div class="risk-box">
+    <div class="risk-label">⚠️ Nivel de Riesgo Neuropático:</div>
+    <div class="risk-badge">ALTO — Fase Crítica</div>
+  </div>
+
+
+  <div class="data-profile-box" style="margin-top: 24px; margin-bottom:24px; font-size:1rem;">
+    <strong style="color:#0F172A; display:block; margin-bottom:16px; font-size:1.1rem;">📋 Tu Perfil Neuropático</strong>
+    <ul style="list-style:none; padding:0; margin:0; line-height:1.4;">
+      <li><strong style="color: #DC2626;">🔴 Origen probable:</strong><br>Apoptosis celular inducida por neurotóxicos</li>
+      <li style="margin-top: 14px;"><strong style="color: #D97706;">⚠️ Factor agravante:</strong><br>Uso prolongado de cremas o analgésicos</li>
+      <li style="margin-top: 14px;"><strong>📊 Nivel de daño:</strong><br>Alto (Fase Crítica)</li>
+      <li style="margin-top: 14px;"><strong style="color: #059669;">✅ Pronóstico:</strong><br>Reversible</li>
+    </ul>
+  </div>
+
+  <div style="background:#FEF2F2; padding: 12px; border-radius: 4px; border-left: 4px solid #EF4444; margin-bottom: 20px; font-size: 0.9rem; color: #7F1D1D; font-weight: 600;">
+    ⚠️ ALERTA: Tienes un mensaje de voz urgente del especialista Carlos Mendoza con los resultados de tu evaluación. ESCUCHA EL AUDIO ANTES DE CONTINUAR.
+  </div>
+
+  <!-- FAKE WHATSAPP PLAYER CTA -->
+  <div class="fake-wp-audio" id="audio-cta">
+    <div class="wp-avatar-wrapper">
+      <img src="dr_mendoza.png" alt="Dr. Carlos Mendoza" class="wp-avatar">
+      <div class="wp-mic-badge">
+        <svg viewBox="0 0 24 24" width="12" height="12" fill="white"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5-3c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg>
+      </div>
+    </div>
+  
+    <div class="wp-player-body">
+      <div class="wp-play-btn">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="#8696A0"><path d="M8 5v14l11-7z"/></svg>
+      </div>
+      
+      <div class="wp-waveform">
+        <div class="wave-dot"></div>
+        <div class="wave w-2"></div><div class="wave w-4"></div><div class="wave w-3"></div>
+        <div class="wave w-1"></div><div class="wave w-5"></div><div class="wave w-2"></div>
+        <div class="wave w-4"></div><div class="wave w-3"></div><div class="wave w-5"></div>
+        <div class="wave w-2"></div><div class="wave w-1"></div><div class="wave w-4"></div>
+        <div class="wave w-3"></div><div class="wave w-2"></div><div class="wave w-5"></div>
+        <div class="wave w-1"></div><div class="wave w-4"></div><div class="wave w-2"></div>
+        <div class="wave w-3"></div><div class="wave w-5"></div><div class="wave w-2"></div>
+        <div class="wave w-4"></div><div class="wave w-1"></div><div class="wave w-3"></div>
+        <div class="wave w-5"></div><div class="wave w-2"></div><div class="wave w-4"></div>
+        <div class="wave w-3"></div><div class="wave w-1"></div><div class="wave w-5"></div>
+        <div class="wave w-2"></div><div class="wave w-4"></div><div class="wave w-3"></div>
+        <div class="wave w-1"></div><div class="wave w-5"></div><div class="wave w-2"></div>
+        <div class="wave w-4"></div><div class="wave w-3"></div><div class="wave w-5"></div>
+        <div class="wave w-2"></div><div class="wave w-1"></div><div class="wave w-4"></div>
+        <div class="wave w-3"></div><div class="wave w-2"></div><div class="wave w-5"></div>
+      </div>
+    </div>
+  
+    <div class="wp-meta">
+      <span class="wp-time">2:15</span>
+    </div>
+  </div>
+
+  <audio id="drCarlosAudio" src="audio_carlos.MP3" preload="auto"></audio>
+
+  <div style="text-align:center; margin-top:24px; margin-bottom: 16px;">
+    <a href="vsl.html" id="mainVslCta" target="_self" class="opt-btn" style="border-color: #059669; background: #25D366; color: white; width: 100%; justify-content: center; font-weight: 800; font-size: 1.05rem; box-shadow: 0 4px 6px rgba(37,211,102,0.3); padding: 18px 12px; margin-bottom: 8px;">
+      <span style="color:white; text-shadow: 0 1px 2px rgba(0,0,0,0.1);">👉 Descubrir el Protocolo para mi perfil ➔</span>
+    </a>
+    <p style="color:#64748B; font-size:0.8rem; margin-top:16px;">✅ Más de 87,000 personas ya recuperaron su calidad de vida con este método 100% natural.</p>
+  </div>
+
+  <hr class="report-divider">
+
+  <div class="secure-strip">
+    <span>🔒 Conexión Segura</span>
+    <span>🛡️ 100% Confidencial</span>
+    <span>🏥 Revisado Clínicamente</span>
+  </div>
+
+</div>
+
+<script>
+// ── State ──
+let currentStep = 1;
+const progressMap = { 1: 10, 2: 20, 3: 35, 4: 50, 5: 65, 6: 75, 7: 85, 8: 95 };
+
+// Set dynamic report date
+document.getElementById('reportDate').textContent =
+  new Date().toLocaleDateString('es-MX', { day:'2-digit', month:'long', year:'numeric' });
+
+function setProgress(pct) {
+  document.getElementById('progressFill').style.width = pct + '%';
+}
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  const el = document.getElementById(id);
+  if (el) el.classList.add('active');
+}
+
+function goStep(n) {
+  currentStep = n;
+  setProgress(progressMap[n] || 100);
+  showScreen('step' + n);
+}
+
+function selectGender(gen) {
+  document.getElementById('img-age-40').src = 'age_' + gen + '_40.png';
+  document.getElementById('img-age-50').src = 'age_' + gen + '_50.png';
+  document.getElementById('img-age-60').src = 'age_' + gen + '_60.png';
+  document.getElementById('img-age-70').src = 'age_' + gen + '_70.png';
+  goStep(6);
+}
+
+// ── Step 4 transition (La Trampa) ──
+function step4Select() {
+  document.querySelectorAll('#step4Options .opt-btn').forEach(b => b.disabled = true);
+  document.getElementById('step4Question').style.opacity = '0.3';
+  document.getElementById('step4Options').style.display = 'none';
+
+  const spinner = document.getElementById('step4Spinner');
+  spinner.style.display = 'flex';
+
+  setTimeout(() => {
+    spinner.style.display = 'none';
+    const box = document.getElementById('step4Correction');
+    const question = document.getElementById('step4Question');
+    if (question) question.style.display = 'none';
+    box.style.display = 'block';
+  }, 1500);
+}
+
+// ── Enhanced Fake Loader ──
+function startFakeLoader() {
+  document.querySelectorAll('.screen').forEach(s => s.style.display = 'none');
+  const loader = document.getElementById('fakeLoader');
+  loader.classList.add('active');
+
+  const fill = document.getElementById('loaderFill');
+  const pct  = document.getElementById('loaderPct');
+  const txt  = document.getElementById('loaderText');
+  const sub  = document.getElementById('loaderSubText');
+  const icon = document.getElementById('loaderIcon');
+
+  setProgress(95);
+
+  const scriptVSL = document.createElement('link');
+  scriptVSL.rel = 'prefetch'; scriptVSL.href = 'vsl.html';
+  document.head.appendChild(scriptVSL);
+
+  const sequences = [
+    { time: 0,    pct: 12, icon: '⚙️', text: 'Evaluando densidad de la Vaina de Mielina...', sub: 'Procesando datos del paciente...' },
+    { time: 600,  pct: 28, icon: '🧬', text: 'Midiendo porcentaje de apoptosis celular...', sub: 'Escaneando marcadores neurológicos...' },
+    { time: 1400, pct: 45, icon: '📊', text: 'Calculando Índice de Toxicidad (T-Score)...', sub: 'Cruzando datos con estudios clínicos 2024...' },
+    { time: 2200, pct: 72, icon: '🛡️', text: 'Cruzando datos con base clínica...', sub: 'Finalizando recomendaciones personalizadas...' },
+    { time: 3000, pct: 89, icon: '📝', text: 'Generando Reporte Confidencial...', sub: 'Finalizando recomendaciones personalizadas...' },
+    { time: 3800, pct: 100, icon: '✅', text: '¡Análisis Completado!', sub: 'Cargando tu diagnóstico de urgencia...' }
+  ];
+
+  sequences.forEach(s => {
+    setTimeout(() => {
+      txt.textContent  = s.text;
+      sub.textContent  = s.sub;
+      icon.textContent = s.icon;
+      fill.style.width = s.pct + '%';
+      
+      // Animate percentage text
+      let currentVal = parseInt(pct.textContent) || 0;
+      let targetVal = s.pct;
+      let interval = setInterval(() => {
+        if (currentVal >= targetVal) {
+          clearInterval(interval);
+        } else {
+          currentVal++;
+          pct.textContent = currentVal + '%';
+        }
+      }, 15);
+    }, s.time);
+  });
+
+  setTimeout(() => {
+    document.getElementById('quizCard').style.display = 'none';
+    document.getElementById('progressWrap').style.display = 'none';
+    const bridge = document.getElementById('bridgePage');
+    bridge.style.display = 'block';
+    bridge.classList.add('active');
+    setProgress(100);
+    if (typeof fbq !== 'undefined') fbq('trackCustom', 'Quiz_Completed');
+  }, 4600);
+}
+
+// ── Play/Pause Audio CTA ──
+document.addEventListener('DOMContentLoaded', () => {
+  const audioCta = document.getElementById('audio-cta');
+  const doCarlosAudio = document.getElementById('drCarlosAudio');
+  const playBtnSvgContainer = document.querySelector('.wp-play-btn');
+  const waveDot = document.querySelector('.wave-dot');
+  const wpTime = document.querySelector('.wp-time');
+  const waves = document.querySelectorAll('.wave');
+
+  if(audioCta && doCarlosAudio) {
+    
+    // Convert seconds to M:SS format
+    function formatTime(seconds) {
+      if(isNaN(seconds)) return "0:00";
+      const min = Math.floor(seconds / 60);
+      const sec = Math.floor(seconds % 60);
+      return min + ':' + (sec < 10 ? '0' : '') + sec;
+    }
+
+    // Set duration once data is loaded (if not, fallback to 2:15)
+    doCarlosAudio.addEventListener('loadedmetadata', () => {
+      wpTime.textContent = formatTime(doCarlosAudio.duration);
+    });
+
+    audioCta.addEventListener('click', function(e) {
+      e.preventDefault();
+      if(doCarlosAudio.paused) {
+        doCarlosAudio.play();
+        playBtnSvgContainer.innerHTML = '<svg viewBox="0 0 24 24" width="24" height="24" fill="#8696A0"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>'; // Pause icon
+      } else {
+        doCarlosAudio.pause();
+        playBtnSvgContainer.innerHTML = '<svg viewBox="0 0 24 24" width="24" height="24" fill="#8696A0"><path d="M8 5v14l11-7z"/></svg>'; // Play icon
+      }
+    });
+
+
+    doCarlosAudio.addEventListener('play', () => {
+      const cta = document.getElementById('mainVslCta');
+      if(cta) cta.classList.add('pulse-aggressive');
+    });
+    doCarlosAudio.addEventListener('pause', () => {
+      const cta = document.getElementById('mainVslCta');
+      if(cta) cta.classList.remove('pulse-aggressive');
+    });
+
+    // Animate UI elements while audio plays
+
+    doCarlosAudio.addEventListener('timeupdate', () => {
+      const duration = doCarlosAudio.duration || 135; 
+      const current = doCarlosAudio.currentTime;
+      const percent = (current / duration) * 100;
+      
+      // Mover a bolinha verde
+      waveDot.style.left = `calc(${percent}% - 3px)`; // -3px centraliza o raio
+      
+      // Atualizar o relógio
+      wpTime.textContent = formatTime(current);
+
+      // Pintar ondinhas que ja tocaram de verde
+      waves.forEach((wave, index) => {
+        const wavePercent = (index / waves.length) * 100;
+        if (wavePercent <= percent) {
+          wave.style.backgroundColor = '#25D366';
+          wave.style.opacity = '1';
+        } else {
+          wave.style.backgroundColor = '#8696A0';
+          wave.style.opacity = '0.6';
+        }
+      });
+    });
+
+    // Reset status on end
+    doCarlosAudio.addEventListener('ended', function() {
+      playBtnSvgContainer.innerHTML = '<svg viewBox="0 0 24 24" width="24" height="24" fill="#8696A0"><path d="M8 5v14l11-7z"/></svg>'; // Play icon
+      waveDot.style.left = '0px';
+      wpTime.textContent = formatTime(doCarlosAudio.duration || 135);
+      waves.forEach(w => {
+         w.style.backgroundColor = '#8696A0';
+         w.style.opacity = '0.6';
+      });
+    });
+  }
+});
+</script>
+<script>
+    let prefix = ["https://payment.hotmart.com", "https://pay.hotmart.com"];
+
+    function getParams() {
+        let t = "", e = window.top.location.href, r = new URL(e);
+        if (null != r) {
+            let a = r.searchParams.get("utm_source"),
+                n = r.searchParams.get("utm_medium"),
+                o = r.searchParams.get("utm_campaign"),
+                m = r.searchParams.get("utm_term"),
+                c = r.searchParams.get("utm_content");
+            -1 !== e.indexOf("?") && (t = "&sck=" + a + "|" + n + "|" + o + "|" + m + "|" + c)
+        }
+        return t
+    }
+    !function() {
+        var t = new URLSearchParams(window.location.search);
+        t.toString() && document.querySelectorAll("a").forEach(function(e) {
+            for (let r = 0; r < prefix.length; r++) -1 !== e.href.indexOf(prefix[r]) && (-1 === e.href.indexOf("?") ? e.href += "?" + t.toString() + getParams() : e.href += "&" + t.toString() + getParams())
+        })
+    }();
+</script>
+</body>
+</html>
