@@ -30,11 +30,11 @@
     
     <style>
         :root {
-            --bg: #FFFFFF;
-            --text: #000000;
+            --bg: #F4F5F7;
+            --text: #0F172A;
             --text-secondary: #4A4A4A;
-            --alert-bg: #FFE5E5; /* Soft red alert */
-            --alert-text: #D8000C;
+            --alert-bg: #CC1212;
+            --alert-text: #FFFFFF;
             --accent-green: #10B981;
             --font-main: 'Inter', sans-serif;
         }
@@ -59,12 +59,9 @@
             background-color: var(--alert-bg);
             color: var(--alert-text);
             text-align: center;
-            padding: 12px 16px;
+            padding: 14px 16px;
             font-size: 14px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            border-bottom: 2px solid #FFB2B2;
+            font-weight: 800;
         }
 
         /* Container & Layout */
@@ -213,14 +210,18 @@
 
     <!-- Header Alert -->
     <div class="top-bar">
-        ⚠️ ESPERA: Tu acceso está casi listo... No cierres esta página.
+        ⚠️ ¡ESPERA! Tu orden aún no está completa. No cierres ni actualices esta página.
     </div>
 
     <div class="container">
+        <!-- Pre-Headline -->
+        <div style="font-size: 12px; font-weight: 800; color: #64748B; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 24px; text-align: center; border-bottom: 1px solid #CBD5E1; padding-bottom: 8px; width: max-content; margin-left: auto; margin-right: auto;">
+            PASO 2 DE 3: PERSONALIZANDO TU ACCESO... <span style="color: #10B981; font-size: 14px;">●</span>
+        </div>
+
         <!-- Headline -->
-        <h1 class="headline">
-            ¡Felicidades por tu compra! Tu acceso está en camino...<br>
-            Pero antes de continuar, mira esta clase de bienvenida obligatoria:
+        <h1 class="headline" style="color: #0F172A; max-width: 700px;">
+            Por favor, mira este breve video de <span style="color: #DC2626;">bienvenida e instrucciones</span> antes de acceder a tu material:
         </h1>
 
         <!-- Video Vturb -->
