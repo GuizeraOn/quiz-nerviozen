@@ -685,13 +685,7 @@
 
     </div>
 
-    <!-- [BLOCO H] Recusa -->
-    <div class="refuse-container" id="refuse-link-container">
-      <a href="upsell2.html" class="refuse-link" role="button" aria-label="Rechazar la oferta">
-        No, gracias. No necesito asegurar que NervioZen funcione en mi caso.<br>
-        Prefiero arriesgarme sin el Activador de Absorción.
-      </a>
-    </div>
+
 
   </div> <!-- End main-container -->
 
@@ -703,7 +697,6 @@
     document.addEventListener('DOMContentLoaded', function () {
       const widgetContainer = document.getElementById('hotmart-widget-container');
       const widgetOverlay   = document.getElementById('widget-loading-overlay');
-      const refuseContainer = document.getElementById('refuse-link-container');
 
       // Hide Hotmart widget initially
       widgetContainer.style.opacity = '0';
@@ -724,9 +717,6 @@
         widgetContainer.style.overflow = 'visible';
         widgetContainer.style.opacity = '1';
         widgetContainer.style.visibility = 'visible';
-
-        // Show Refuse Link
-        refuseContainer.style.display = 'block';
       }, WIDGET_DELAY_MS);
     });
 
