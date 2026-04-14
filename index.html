@@ -2,11 +2,15 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Protocolo NervioZen - Evaluación Oficial</title>
 <meta name="description" content="Descubre el verdadero origen del dolor y ardor nervioso. Realiza tu evaluación rápida aquí.">
 <link rel="icon" href="logo_nerviozen.webp" type="image/webp">
+<!-- Preload LCP image -->
+<link rel="preload" as="image" href="logo_nerviozen.webp">
+<!-- Fonts: preconnect para ambos os domínios + display=swap para não bloquear render -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -647,13 +651,15 @@
   }
 </style>
 
-<!-- Microsoft Clarity Code -->
-<script type="text/javascript">
+<!-- Microsoft Clarity: adiado para após o carregamento da página (não bloqueia LCP) -->
+<script>
+  window.addEventListener('load', function() {
     (function(c,l,a,r,i,t,y){
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
         t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "w9mq28o0u6");
+  });
 </script>
 
 <!-- Meta Pixel Code -->
@@ -678,7 +684,7 @@ src="https://www.facebook.com/tr?id=1285627397095470&ev=PageView&noscript=1"
 
 <!-- Header -->
 <header class="site-header">
-  <img src="logo_nerviozen.webp" alt="NervioZen" style="height: 85px; width: auto; object-fit: contain; margin-bottom: 8px;">
+  <img src="logo_nerviozen.webp" alt="NervioZen" width="272" height="149" fetchpriority="high" style="height: 85px; width: auto; object-fit: contain; margin-bottom: 8px;">
 </header>
 
 <!-- Progress -->
@@ -687,12 +693,13 @@ src="https://www.facebook.com/tr?id=1285627397095470&ev=PageView&noscript=1"
   <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:10%"></div></div>
 </div>
 
-<!-- ════════════════════════════════════════ QUIZ CARD ═══════════════════════════════════════ -->
+<!-- ════════════════════════════════════════ QUIZ CARD ═══════════════════════ -->
+<main role="main">
 <div class="card" id="quizCard">
 
   <!-- ── STEP 1 (Fricción Cero) ── -->
   <div class="screen active" id="step1">
-    <p class="question">Cuando sientes <strong>hormigueo</strong> o dolor, ¿tu primer instinto es <strong>frotarte con alguna crema o pomada</strong>?</p>
+    <p class="question">Cuando sientes <strong>hormigueo</strong> o dolor, ¿tu primer instinto é <strong>frotarte con alguna crema o pomada</strong>?</p>
     <div class="options">
       <button class="opt-btn" onclick="goStep(2)"><span class="icon">✅</span> <span>Sí, lo hago casi siempre.</span></button>
       <button class="opt-btn" onclick="goStep(2)"><span class="icon">❌</span> <span>No, rara vez lo hago.</span></button>
@@ -929,6 +936,7 @@ src="https://www.facebook.com/tr?id=1285627397095470&ev=PageView&noscript=1"
   </div>
 
 </div>
+</main>
 
 <script>
 // ── State ──
