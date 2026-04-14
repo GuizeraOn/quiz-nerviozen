@@ -752,11 +752,11 @@ src="https://www.facebook.com/tr?id=1285627397095470&ev=PageView&noscript=1"
     <p class="question">Para personalizar tu protocolo: ¿Eres Hombre o Mujer?</p>
     <div class="options">
       <button class="opt-btn gender-btn" onclick="selectGender('m')">
-        <img src="gender_male.png" alt="Hombre" class="gender-img">
+        <img src="gender_male.webp" alt="Hombre" class="gender-img">
         <span>Hombre</span>
       </button>
       <button class="opt-btn gender-btn" onclick="selectGender('f')">
-        <img src="gender_female.png" alt="Mujer" class="gender-img">
+        <img src="gender_female.webp" alt="Mujer" class="gender-img">
         <span>Mujer</span>
       </button>
     </div>
@@ -767,19 +767,19 @@ src="https://www.facebook.com/tr?id=1285627397095470&ev=PageView&noscript=1"
     <p class="question">Para que nuestro sistema ajuste tu protocolo clínico, ¿en qué rango de edad estás?</p>
     <div class="options grid-2x2">
       <button class="opt-btn" onclick="goStep(7)">
-        <img src="age_m_40.png" class="demo-photo-img" id="img-age-40">
+        <img src="age_m_40.webp" class="demo-photo-img" id="img-age-40">
         <span>40 a 49 años</span>
       </button>
       <button class="opt-btn" onclick="goStep(7)">
-        <img src="age_m_50.png" class="demo-photo-img" id="img-age-50">
+        <img src="age_m_50.webp" class="demo-photo-img" id="img-age-50">
         <span>50 a 59 años</span>
       </button>
       <button class="opt-btn" onclick="goStep(7)">
-        <img src="age_m_60.png" class="demo-photo-img" id="img-age-60">
+        <img src="age_m_60.webp" class="demo-photo-img" id="img-age-60">
         <span>60 a 69 años</span>
       </button>
       <button class="opt-btn" onclick="goStep(7)">
-        <img src="age_m_70.png" class="demo-photo-img" id="img-age-70">
+        <img src="age_m_70.webp" class="demo-photo-img" id="img-age-70">
         <span>70 años o más</span>
       </button>
     </div>
@@ -804,7 +804,7 @@ src="https://www.facebook.com/tr?id=1285627397095470&ev=PageView&noscript=1"
       <span class="label" style="background:#F0FDF4; color:#059669;">🧬 EL ENEMIGO INVISIBLE</span>
       <p style="margin-bottom: 14px;">La razón por la que tus <strong>Células de Schwann</strong> están muriendo se encuentra en tu propio hogar.</p>
       
-      <img src="toxic_nerve.png" style="width: 100%; border-radius: 8px; margin: 12px 0; border: 1px solid #E2E8F0;" alt="Daño por Neurotóxicos">
+      <img src="toxic_nerve.webp" style="width: 100%; border-radius: 8px; margin: 12px 0; border: 1px solid #E2E8F0;" alt="Daño por Neurotóxicos">
 
       <p style="margin-bottom: 14px;">Hay neurotóxicos escondidos en jabones y alimentos que destruyen tus nervios como si fueran cables pelados siendo roídos por dentro. Por eso sientes ese ardor que no te da tregua.</p>
       
@@ -956,10 +956,10 @@ function goStep(n) {
 }
 
 function selectGender(gen) {
-  document.getElementById('img-age-40').src = 'age_' + gen + '_40.png';
-  document.getElementById('img-age-50').src = 'age_' + gen + '_50.png';
-  document.getElementById('img-age-60').src = 'age_' + gen + '_60.png';
-  document.getElementById('img-age-70').src = 'age_' + gen + '_70.png';
+  document.getElementById('img-age-40').src = 'age_' + gen + '_40.webp';
+  document.getElementById('img-age-50').src = 'age_' + gen + '_50.webp';
+  document.getElementById('img-age-60').src = 'age_' + gen + '_60.webp';
+  document.getElementById('img-age-70').src = 'age_' + gen + '_70.webp';
   goStep(6);
 }
 
