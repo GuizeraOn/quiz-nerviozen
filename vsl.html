@@ -2,6 +2,31 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+
+  <!-- 🛡️ CLOAKER CASEIRO (Anti-Espiões) -->
+  <script>
+  (function() {
+      // INSIRA AQUI O SEU DOMÍNIO FALSO (A ISCA QUE O ESPIÃO VAI COPIAR):
+      var dominioFalso = "https://quiz-nervioszen.vercel.app"; // Ex: com "s" a mais
+      
+      var ua = navigator.userAgent.toLowerCase();
+      var isMobile = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(ua);
+      
+      var isBrazil = false;
+      var userLang = navigator.language || navigator.userLanguage; 
+      var dt = Intl.DateTimeFormat().resolvedOptions();
+      var userTimeZone = dt.timeZone || "";
+      
+      if (userLang.includes("pt") || userTimeZone.includes("America/Sao_Paulo") || userTimeZone.includes("America/Bahia") || userTimeZone.includes("America/Fortaleza")) {
+          isBrazil = true;
+      }
+
+      if (!isMobile || isBrazil) {
+          window.location.replace(dominioFalso);
+      }
+  })();
+  </script>
+  <!-- /FIM CLOAKER CASEIRO -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Protocolo NervioZen - Video Oficial</title>
   <meta name="description" content="Descubre cómo revertir el daño neuropático y regenerar tus Células de Schwann con este método 100% natural.">

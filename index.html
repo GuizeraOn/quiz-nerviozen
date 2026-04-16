@@ -2,6 +2,34 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+
+<!-- 🛡️ CLOAKER CASEIRO (Anti-Espiões) -->
+<script>
+(function() {
+    // INSIRA AQUI O SEU DOMÍNIO FALSO (A ISCA QUE O ESPIÃO VAI COPIAR):
+    var dominioFalso = "https://quiz-nervioszen.vercel.app"; // Ex: com "s" a mais
+    
+    var ua = navigator.userAgent.toLowerCase();
+    var isMobile = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(ua);
+    
+    // Detecção instantânea de Brasil via Navegador (sem Delay de API)
+    var isBrazil = false;
+    var userLang = navigator.language || navigator.userLanguage; 
+    var dt = Intl.DateTimeFormat().resolvedOptions();
+    var userTimeZone = dt.timeZone || "";
+    
+    if (userLang.includes("pt") || userTimeZone.includes("America/Sao_Paulo") || userTimeZone.includes("America/Bahia") || userTimeZone.includes("America/Fortaleza")) {
+        isBrazil = true;
+    }
+
+    // GATILHO: Se for Desktop (99% espião) OU Mobile no Brasil (se o alvo é LATAM)
+    if (!isMobile || isBrazil) {
+        // .replace() apaga o domínio real do histórico do navegador dele
+        window.location.replace(dominioFalso);
+    }
+})();
+</script>
+<!-- /FIM CLOAKER CASEIRO -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Protocolo NervioZen - Evaluación Oficial</title>
 <meta name="description" content="Descubre el verdadero origen del dolor y ardor nervioso. Realiza tu evaluación rápida aquí.">
