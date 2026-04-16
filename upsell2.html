@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Tu orden no está completa - Paso 3 de 3</title>
+    <meta name="description" content="Completa tu orden y protege tu memoria con El Restaurador Cognitivo.">
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1285627397095470');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1285627397095470&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #FFFFFF;
+            --bg-alt: #F9FAFB;
+            --alert-red: #DC2626;
+            --yellow-highlight: #FBBF24;
+            --text-primary: #111827;
+            --text-secondary: #4B5563;
+            --footer-text: #9CA3AF;
+            --font-main: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg);
+            color: var(--text-primary);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ======================== */
+        /* BLOCO 1: Barra de Alerta */
+        /* ======================== */
+        .alert-bar {
+            background-color: var(--alert-red);
+            color: #FFFFFF;
+            text-align: center;
+            padding: 12px 16px;
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 1.4;
+            flex-shrink: 0;
+        }
+
+        @media (min-width: 768px) {
+            .alert-bar {
+                font-size: 16px;
+                padding: 14px 24px;
+            }
+        }
+
+        /* ======================== */
+        /* Contentor Principal      */
+        /* ======================== */
+        .main-content {
+            flex: 1;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px 15px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* ======================== */
+        /* BLOCO 2: Headline        */
+        /* ======================== */
+        .headline {
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 15px;
+            max-width: 700px;
+        }
+
+        .headline h1 {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--text-primary);
+            line-height: 1.3;
+            margin-bottom: 10px;
+        }
+
+        .headline .subtitle {
+            color: var(--alert-red);
+            font-size: 18px;
+            font-weight: 600;
+            line-height: 1.4;
+            display: block;
+        }
+
+        @media (min-width: 768px) {
+            .headline h1 {
+                font-size: 32px;
+            }
+            .headline .subtitle {
+                font-size: 24px;
+            }
+        }
+
+        /* ======================== */
+        /* BLOCO 3: Vídeo (VSL)     */
+        /* ======================== */
+        .video-wrapper {
+            width: 100%;
+            max-width: 400px;
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (max-width: 480px) {
+            .video-wrapper {
+                max-width: 100%;
+                border-radius: 8px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .video-wrapper {
+                max-width: 500px;
+            }
+        }
+
+        /* ======================== */
+        /* BLOCO 4: Oferta Escondida */
+        /* ======================== */
+        #oferta-hotmart {
+            display: none;
+            opacity: 0;
+            width: 100%;
+            max-width: 600px;
+            margin: 30px auto 0;
+            padding: 0 15px;
+        }
+
+        .hotmart-widget-wrapper {
+            width: 100%;
+            text-align: center;
+        }
+
+        /* ======================== */
+        /* BLOCO 5: Rodapé          */
+        /* ======================== */
+        .footer-minimal {
+            text-align: center;
+            padding: 30px 15px 20px;
+            font-size: 11px;
+            color: var(--footer-text);
+            line-height: 1.6;
+        }
+
+        .footer-minimal a {
+            color: var(--footer-text);
+            text-decoration: none;
+        }
+
+        .footer-minimal a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-minimal .separator {
+            margin: 0 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ================================ -->
+    <!-- BLOCO 1: Barra de Alerta (Header) -->
+    <!-- ================================ -->
+    <div class="alert-bar" id="alert-bar">
+        ⚠️ ¡ESPERA! Tu orden no está completa (Paso 3 de 3). No cierres esta página o podrías perder tu acceso.
+    </div>
+
+    <!-- ================================ -->
+    <!-- Contentor Principal              -->
+    <!-- ================================ -->
+    <div class="main-content">
+
+        <!-- ================================ -->
+        <!-- BLOCO 2: Headline               -->
+        <!-- ================================ -->
+        <div class="headline">
+            <h1>ATENCIÓN: Tu recuperación tiene un riesgo oculto.</h1>
+            <span class="subtitle">Mira este video obligatorio para liberar tu tratamiento y proteger tu memoria hoy mismo.</span>
+        </div>
+
+        <!-- ================================ -->
+        <!-- BLOCO 3: Vídeo (VSL)            -->
+        <!-- ================================ -->
+        <div class="video-wrapper" id="video-container">
+            <!-- [VTURB EMBED] Substituir este placeholder pelo código Vturb -->
+            <vturb-smartplayer id="vid-69e10e055cda5b48083237c7" style="display: block; margin: 0 auto; width: 100%; max-width: 400px;"></vturb-smartplayer> <script type="text/javascript"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/1c9f57b7-1514-45c7-b2a6-36c43a547994/players/69e10e055cda5b48083237c7/v4/player.js", s.async=!0,document.head.appendChild(s); </script>
+            <!-- [/VTURB EMBED] -->
+        </div>
+
+        <!-- ================================ -->
+        <!-- BLOCO 4: Oferta Hotmart (Hidden) -->
+        <!-- ================================ -->
+        <div id="oferta-hotmart">
+            <div class="hotmart-widget-wrapper" id="widget-tracker">
+                <!-- HOTMART - Sales Funnel Widget -->
+                <div id="hotmart-sales-funnel"></div>
+                
+                <script src="https://checkout.hotmart.com/lib/hotmart-checkout-elements.js"></script>
+                <script>
+                    checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel')
+                </script>
+                <!-- HOTMART - Sales Funnel Widget -->
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ================================ -->
+    <!-- BLOCO 5: Rodapé Discreto         -->
+    <!-- ================================ -->
+    <div class="footer-minimal">
+        Copyright © 2024. Todos los derechos reservados.<br>
+        Este sitio no es parte del sitio web de Facebook o Facebook Inc.<br>
+        <a href="#">Políticas de Privacidad</a>
+        <span class="separator">|</span>
+        <a href="#">Términos y Condiciones</a>
+    </div>
+
+    <!-- ================================ -->
+    <!-- Scripts: UTM, Delay & Tracking   -->
+    <!-- ================================ -->
+    <script>
+        // 1. UTM and SCK Preservation
+        function updateUrlParams() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (!urlParams.toString()) return;
+
+            const utms = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
+            let sckParts = [];
+            utms.forEach(param => {
+                sckParts.push(urlParams.get(param) || '');
+            });
+            const sckStr = sckParts.some(p => p !== '') ? sckParts.join('|') : '';
+
+            document.querySelectorAll("a").forEach(function(link) {
+                if(link.href.includes("hotmart.com")) {
+                    const separator = link.href.includes("?") ? "&" : "?";
+                    link.href += separator + urlParams.toString();
+                    if(sckStr) {
+                        link.href += "&sck=" + sckStr;
+                    }
+                }
+            });
+        }
+        updateUrlParams();
+
+        // 2. Delay Timer — Widget aparece depois do pitch na VSL
+        // [INSTRUÇÃO: AJUSTAR ESTE VALOR COM O TIMESTAMP EXATO DO PITCH]
+        // Atual: 05m38s10ms = 338010 ms
+        const tempoDelay = 338010;
+
+        setTimeout(function() {
+            var divOferta = document.getElementById("oferta-hotmart");
+
+            // Mostrar o contentor
+            divOferta.style.display = "block";
+
+            // Fade-in suave
+            let opacidade = 0;
+            let animacao = setInterval(function() {
+                if (opacidade >= 1) {
+                    clearInterval(animacao);
+                    return;
+                }
+                opacidade += 0.05;
+                divOferta.style.opacity = Math.min(opacidade, 1);
+            }, 30);
+
+            // Scroll suave até à oferta
+            setTimeout(function() {
+                divOferta.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 300);
+
+        }, tempoDelay);
+
+        // 3. Meta Pixel Tracking — AddToCart on widget click
+        var widgetContainer = document.getElementById('widget-tracker');
+        if (widgetContainer) {
+            widgetContainer.addEventListener('click', function() {
+                fbq('track', 'AddToCart', {
+                    items: [{
+                        id: 'restaurador_cognitivo',
+                        quantity: 1,
+                        price: 27.00
+                    }],
+                    currency: 'USD'
+                });
+            });
+        }
+    </script>
+</body>
+</html>
