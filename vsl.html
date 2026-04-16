@@ -3,27 +3,30 @@
 <head>
   <meta charset="UTF-8">
 
-  <!-- 🛡️ CLOAKER CASEIRO (Anti-Espiões) -->
+  <!-- 🛡️ CLOAKER CASEIRO (Anti-Espiões) via IPAPI -->
   <script>
   (function() {
       // INSIRA AQUI O SEU DOMÍNIO FALSO (A ISCA QUE O ESPIÃO VAI COPIAR):
-      var dominioFalso = "https://quiz-nervioszen.vercel.app"; // Ex: com "s" a mais
+      var dominioFalso = "https://quiz-nervioszen.vercel.app";
       
       var ua = navigator.userAgent.toLowerCase();
       var isMobile = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(ua);
       
-      var isBrazil = false;
-      var userLang = navigator.language || navigator.userLanguage; 
-      var dt = Intl.DateTimeFormat().resolvedOptions();
-      var userTimeZone = dt.timeZone || "";
-      
-      if (userLang.includes("pt") || userTimeZone.includes("America/Sao_Paulo") || userTimeZone.includes("America/Bahia") || userTimeZone.includes("America/Fortaleza")) {
-          isBrazil = true;
+      // GATILHO 1: Desktop (Redirecionamento bloqueante e imediato)
+      if (!isMobile) {
+          window.location.replace(dominioFalso);
+          return;
       }
 
-      if (!isMobile || isBrazil) {
-          window.location.replace(dominioFalso);
-      }
+      // GATILHO 2: Mobile com IP do Brasil (Delay mínimo via IPAPI)
+      fetch('https://ipapi.co/json/')
+        .then(function(res) { return res.json(); })
+        .then(function(data) {
+            if (data && data.country_code === 'BR') {
+                window.location.replace(dominioFalso);
+            }
+        })
+        .catch(function() { /* Ignora em caso de erro da API */ });
   })();
   </script>
   <!-- /FIM CLOAKER CASEIRO -->
